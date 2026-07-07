@@ -335,47 +335,49 @@ function LeadForm() {
         </p>
       </form>
 
-      {/* Modal Popup de Sucesso */}
+      {/* Modal Popup de Sucesso com Cal.com integrado */}
       {submitted && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
-          <div className="relative w-full max-w-md rounded-2xl border border-neon/30 bg-[#111111]/90 p-8 text-center shadow-[0_0_80px_-10px_rgba(149,236,0,0.3)] backdrop-blur-xl animate-fade-in">
+          <div className="relative w-full max-w-4xl h-[85vh] rounded-2xl border border-neon/30 bg-[#111111]/95 p-5 md:p-6 flex flex-col shadow-[0_0_80px_-10px_rgba(149,236,0,0.3)] backdrop-blur-xl animate-fade-in">
             {/* Botão de Fechar no topo */}
             <button
               onClick={() => setSubmitted(false)}
-              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors text-lg font-bold"
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors text-lg font-bold z-10 bg-black/40 h-8 w-8 rounded-full flex items-center justify-center backdrop-blur-sm"
             >
               ✕
             </button>
 
-            {/* Ícone de sucesso verde neon */}
-            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-neon/10 border border-neon/40 text-neon shadow-[0_0_30px_rgba(149,236,0,0.2)]">
-              <Check className="h-8 w-8 stroke-[3]" />
+            {/* Cabeçalho do modal */}
+            <div className="pr-10">
+              <h3 className="text-lg sm:text-xl font-black tracking-tight text-foreground uppercase flex items-center gap-2">
+                <span className="text-neon">Parabéns pelo cadastro! 🎉</span>
+              </h3>
+              <p className="mt-1 text-xs sm:text-sm text-muted-foreground leading-snug">
+                Agende a sua reunião de diagnóstico de 30 minutos selecionando o melhor dia e horário abaixo:
+              </p>
             </div>
 
-            <h3 className="text-2xl font-black tracking-tight text-foreground uppercase">
-              Parabéns pelo cadastro! 🎉
-            </h3>
-            
-            <p className="mt-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
-              Nosso time entrará em contato com você via ligação em alguns minutos. Fique atento ao seu telefone!
-            </p>
+            {/* Iframe do Cal.com */}
+            <div className="flex-1 mt-4 rounded-xl border border-border/40 overflow-hidden bg-background relative min-h-0">
+              <iframe
+                src="https://cal.com/fazendoacontecer/30min"
+                style={{ width: "100%", height: "100%", border: "none" }}
+                title="Agendamento Diagnóstico FA"
+              />
+            </div>
 
-            <div className="mt-8 space-y-3">
+            {/* Rodapé com Instagram */}
+            <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-border/30 pt-4 text-xs text-muted-foreground shrink-0">
+              <span>* Nosso time comercial também tentará ligar para você em alguns minutos.</span>
               <a
                 href={import.meta.env.VITE_INSTAGRAM_URL || "https://www.instagram.com/fazendoacontecer.ofc/"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-neon px-6 py-4 text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-[#B6FF35] glow-neon"
+                className="inline-flex items-center gap-1.5 font-bold text-neon hover:underline"
               >
-                <Instagram className="h-4 w-4" />
+                <Instagram className="h-3.5 w-3.5" />
                 Seguir no Instagram
               </a>
-              <button
-                onClick={() => setSubmitted(false)}
-                className="w-full py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Fechar janela
-              </button>
             </div>
           </div>
         </div>
