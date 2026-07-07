@@ -142,57 +142,49 @@ function Logo() {
 
 function Hero() {
   return (
-    <section id="topo" className="relative">
-      {/* Background abstract */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full opacity-30 blur-[140px]" style={{ background: "radial-gradient(circle, #95EC00 0%, transparent 70%)" }} />
-        <div className="absolute top-1/3 -right-40 h-[600px] w-[600px] rounded-full opacity-20 blur-[160px]" style={{ background: "radial-gradient(circle, #95EC00 0%, transparent 70%)" }} />
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-        />
-      </div>
+    <section id="topo" className="relative overflow-hidden">
+      {/* ===== VIDEO BACKGROUND ===== */}
+      <video
+        src="https://fazendoacontecer.site/wp-content/uploads/2026/07/IMG_4725.webm"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover object-top z-0"
+      />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 pt-4 sm:pt-16 pb-16 lg:pt-24 lg:pb-28">
-        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:items-center">
-          {/* Left Column — Text */}
-          <div className="order-2 lg:order-1 min-w-0 text-center lg:text-left flex flex-col items-center lg:items-start px-4 sm:px-0 mt-6 lg:mt-0">
-            <h1 className="text-[28px] sm:text-4xl lg:text-5xl font-black leading-[1.08] lg:leading-[1.1] tracking-tight text-foreground">
-              Aumentamos o <span className="text-neon">faturamento da sua clínica</span> internalizando o seu comercial e implantando a nossa metodologia de <span className="text-neon">geração de demanda, vendas e dados</span>.
-            </h1>
-            <p className="mt-4 max-w-md sm:max-w-xl lg:max-w-xl text-sm sm:text-base lg:text-lg leading-relaxed text-muted-foreground/80 font-medium">
-              Entregamos o paciente na sua agenda para você realizar a consulta e fechar seu protocolo ou procedimento.
-            </p>
-            <div className="mt-8 w-full flex justify-center lg:justify-start">
-              <a
-                href="#form"
-                className="inline-flex w-full max-w-sm sm:max-w-md lg:w-auto h-[54px] sm:h-[58px] items-center justify-center gap-2 rounded-lg bg-neon px-8 text-sm sm:text-base font-extrabold uppercase tracking-wider text-black transition-all hover:bg-[#B6FF35] glow-neon"
-              >
-                Quero receber meu diagnóstico
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
+      {/* Overlay escuro para legibilidade */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-r from-background/90 via-background/60 to-background/20 lg:from-background/85 lg:via-background/50 lg:to-transparent" />
+      {/* Overlay extra escuro no mobile (toda a base) */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-background/80 via-transparent to-transparent lg:hidden" />
 
-          {/* Right Column — Photo of the Man */}
-          <div 
-            className="order-1 lg:order-2 w-full relative lg:!h-auto overflow-hidden lg:overflow-visible flex justify-center lg:justify-end rounded-2xl lg:rounded-none"
-            style={{ height: "clamp(300px, 42vh, 380px)" }}
-          >
-            {/* Ambient Backlight Glow behind the portrait */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[320px] w-[320px] rounded-full opacity-20 blur-[80px] pointer-events-none z-0" style={{ background: "radial-gradient(circle, #95EC00 0%, transparent 75%)" }} />
-            
-            <img
-              src="https://fazendoacontecer.site/wp-content/uploads/2026/07/cc9debfb-a6c7-431b-b55e-668e55a1cdc4.png"
-              alt="Fazendo Acontecer"
-              className="w-full h-full object-cover object-top lg:w-auto lg:h-auto lg:max-w-full lg:object-contain filter lg:drop-shadow-[0_0_40px_rgba(149,236,0,0.15)] animate-fade-in relative z-10"
-            />
-            {/* Gradient overlay on mobile to transition smoothly to black background */}
-            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background via-background/60 to-transparent lg:hidden z-20" />
+      {/* Grid sutil */}
+      <div
+        className="pointer-events-none absolute inset-0 z-10 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+        }}
+      />
+
+      {/* ===== CONTENT ===== */}
+      <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 pt-16 pb-20 sm:pt-20 lg:pt-28 lg:pb-36">
+        <div className="max-w-2xl">
+          <h1 className="text-[28px] sm:text-4xl lg:text-5xl font-black leading-[1.08] lg:leading-[1.1] tracking-tight text-foreground text-center sm:text-left">
+            Aumentamos o <span className="text-neon">faturamento da sua clínica</span> internalizando o seu comercial e implantando a nossa metodologia de <span className="text-neon">geração de demanda, vendas e dados</span>.
+          </h1>
+          <p className="mt-5 text-sm sm:text-base lg:text-lg leading-relaxed text-muted-foreground/90 font-medium text-center sm:text-left">
+            Entregamos o paciente na sua agenda para você realizar a consulta e fechar seu protocolo ou procedimento.
+          </p>
+          <div className="mt-8 flex justify-center sm:justify-start">
+            <a
+              href="#form"
+              className="inline-flex w-full max-w-sm sm:w-auto h-[54px] sm:h-[58px] items-center justify-center gap-2 rounded-lg bg-neon px-8 text-sm sm:text-base font-extrabold uppercase tracking-wider text-black transition-all hover:bg-[#B6FF35] glow-neon"
+            >
+              Quero receber meu diagnóstico
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
       </div>
