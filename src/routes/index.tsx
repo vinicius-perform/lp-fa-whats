@@ -113,8 +113,9 @@ function Index() {
       <div className="bg-[#E10614] text-white py-2.5 px-4 text-center text-xs sm:text-sm font-black tracking-widest uppercase shrink-0">
         *EXCLUSIVO PARA CLÍNICAS E CONSULTÓRIOS QUE FATURAM ACIMA DE 35K/MÊS
       </div>
-      <Hero setSubmitted={setSubmitted} />
+      <Hero />
       <Cases />
+      <FormSection setSubmitted={setSubmitted} />
       <Footer />
 
       {/* Modal de Sucesso Renderizado na Raiz (acima de tudo!) */}
@@ -139,7 +140,7 @@ function Logo() {
   );
 }
 
-function Hero({ setSubmitted }: { setSubmitted: (val: boolean) => void }) {
+function Hero() {
   return (
     <section id="topo" className="relative">
       {/* Background abstract */}
@@ -156,23 +157,21 @@ function Hero({ setSubmitted }: { setSubmitted: (val: boolean) => void }) {
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 pt-12 sm:pt-16 pb-20 lg:pt-24 lg:pb-28">
-        <div className="grid gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:items-center">
-          {/* Left */}
-          <div className="min-w-0">
-            <h1 className="text-3xl font-black leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-              Aumentamos o <span className="text-neon">faturamento da sua clínica</span> internalizando o seu comercial e implantando a nossa metodologia de <span className="text-neon">geração de demanda, vendas e dados</span>.
-            </h1>
-
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Entregamos o paciente na sua agenda para você realizar a consulta e fechar seu protocolo ou procedimento.
-            </p>
-          </div>
-
-          {/* Right — Form */}
-          <div id="form" className="lg:sticky lg:top-8">
-            <LeadForm setSubmitted={setSubmitted} />
-          </div>
+      <div className="relative mx-auto max-w-4xl px-6 pt-16 pb-24 text-center lg:pt-28 lg:pb-36 flex flex-col items-center">
+        <h1 className="text-3xl font-black leading-[1.15] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          Aumentamos o <span className="text-neon">faturamento da sua clínica</span> internalizando o seu comercial e implantando a nossa metodologia de <span className="text-neon">geração de demanda, vendas e dados</span>.
+        </h1>
+        <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-xl font-medium">
+          Entregamos o paciente na sua agenda para você realizar a consulta e fechar seu protocolo ou procedimento.
+        </p>
+        <div className="mt-10">
+          <a
+            href="#form"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-neon px-8 py-4 text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-[#B6FF35] glow-neon"
+          >
+            Quero receber meu diagnóstico
+            <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </section>
@@ -560,6 +559,21 @@ function CaseVideo({ videoUrl, thumbnail }: { videoUrl: string; thumbnail?: stri
         </>
       )}
     </div>
+  );
+}
+
+function FormSection({ setSubmitted }: { setSubmitted: (val: boolean) => void }) {
+  return (
+    <section id="form" className="relative border-t border-border/50 bg-[#090909]/40 py-20 lg:py-28">
+      {/* Background glow effects for the form section */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full opacity-10 blur-[130px]" style={{ background: "radial-gradient(circle, #95EC00 0%, transparent 70%)" }} />
+      </div>
+
+      <div className="relative mx-auto max-w-xl px-6">
+        <LeadForm setSubmitted={setSubmitted} />
+      </div>
+    </section>
   );
 }
 
