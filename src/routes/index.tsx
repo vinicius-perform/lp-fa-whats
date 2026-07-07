@@ -143,27 +143,19 @@ function Logo() {
 function Hero() {
   return (
     <section id="topo" className="relative overflow-hidden min-h-[100svh] lg:min-h-screen flex flex-col">
-      {/* ===== VIDEO BACKGROUND ===== */}
+      {/* ===== VIDEO BACKGROUND — 100% opacity, anchored top ===== */}
       <video
         src="https://fazendoacontecer.site/wp-content/uploads/2026/07/IMG_4725.webm"
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover object-top z-0"
+        className="absolute inset-0 w-full h-full object-cover object-[center_10%] z-0"
       />
-
-      {/* === OVERLAYS === */}
-      {/* Mobile: apenas gradiente de baixo para cima para escurecer área do texto */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-background via-background/70 to-transparent lg:hidden" />
-
-      {/* Desktop: gradiente de baixo para cima + leve escurecimento na esquerda apenas no lg */}
-      <div className="absolute inset-0 z-10 hidden lg:block bg-gradient-to-t from-background via-background/60 to-transparent" />
-      <div className="absolute inset-0 z-10 hidden lg:block bg-gradient-to-r from-background/80 via-background/30 to-transparent" />
 
       {/* Grid sutil */}
       <div
-        className="pointer-events-none absolute inset-0 z-10 opacity-[0.03]"
+        className="pointer-events-none absolute inset-0 z-10 opacity-[0.025]"
         style={{
           backgroundImage:
             "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
@@ -173,7 +165,10 @@ function Hero() {
 
       {/* ===== CONTENT ===== */}
       <div className="relative z-20 mt-auto w-full">
-        <div className="mx-auto max-w-7xl px-6 pb-16 pt-[54vh] lg:pt-0 lg:pb-28">
+        {/* Sombra localizada APENAS atrás do bloco de texto */}
+        <div className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-background/95 via-background/70 to-transparent pointer-events-none" />
+
+        <div className="relative mx-auto max-w-7xl px-6 pb-16 pt-[52vh] lg:pt-0 lg:pb-28">
           <div className="max-w-xl">
             <h1 className="text-[28px] sm:text-4xl lg:text-5xl font-black leading-[1.08] lg:leading-[1.1] tracking-tight text-foreground text-center lg:text-left">
               Aumentamos o <span className="text-neon">faturamento da sua clínica</span> internalizando o seu comercial e implantando a nossa metodologia de <span className="text-neon">geração de demanda, vendas e dados</span>.
