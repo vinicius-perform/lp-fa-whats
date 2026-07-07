@@ -142,7 +142,7 @@ function Logo() {
 
 function Hero() {
   return (
-    <section id="topo" className="relative overflow-hidden">
+    <section id="topo" className="relative overflow-hidden min-h-[100svh] lg:min-h-screen flex flex-col">
       {/* ===== VIDEO BACKGROUND ===== */}
       <video
         src="https://fazendoacontecer.site/wp-content/uploads/2026/07/IMG_4725.webm"
@@ -153,10 +153,13 @@ function Hero() {
         className="absolute inset-0 w-full h-full object-cover object-top z-0"
       />
 
-      {/* Overlay escuro para legibilidade */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-r from-background/90 via-background/60 to-background/20 lg:from-background/85 lg:via-background/50 lg:to-transparent" />
-      {/* Overlay extra escuro no mobile (toda a base) */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-background/80 via-transparent to-transparent lg:hidden" />
+      {/* === OVERLAYS === */}
+      {/* Mobile: apenas gradiente de baixo para cima para escurecer área do texto */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-background via-background/70 to-transparent lg:hidden" />
+
+      {/* Desktop: gradiente de baixo para cima + leve escurecimento na esquerda apenas no lg */}
+      <div className="absolute inset-0 z-10 hidden lg:block bg-gradient-to-t from-background via-background/60 to-transparent" />
+      <div className="absolute inset-0 z-10 hidden lg:block bg-gradient-to-r from-background/80 via-background/30 to-transparent" />
 
       {/* Grid sutil */}
       <div
@@ -169,22 +172,24 @@ function Hero() {
       />
 
       {/* ===== CONTENT ===== */}
-      <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 pt-[52vh] sm:pt-[45vh] lg:pt-28 pb-16 lg:pb-36">
-        <div className="max-w-2xl">
-          <h1 className="text-[28px] sm:text-4xl lg:text-5xl font-black leading-[1.08] lg:leading-[1.1] tracking-tight text-foreground text-center sm:text-left">
-            Aumentamos o <span className="text-neon">faturamento da sua clínica</span> internalizando o seu comercial e implantando a nossa metodologia de <span className="text-neon">geração de demanda, vendas e dados</span>.
-          </h1>
-          <p className="mt-5 text-sm sm:text-base lg:text-lg leading-relaxed text-muted-foreground/90 font-medium text-center sm:text-left">
-            Entregamos o paciente na sua agenda para você realizar a consulta e fechar seu protocolo ou procedimento.
-          </p>
-          <div className="mt-8 flex justify-center sm:justify-start">
-            <a
-              href="#form"
-              className="inline-flex w-full max-w-sm sm:w-auto h-[54px] sm:h-[58px] items-center justify-center gap-2 rounded-lg bg-neon px-8 text-sm sm:text-base font-extrabold uppercase tracking-wider text-black transition-all hover:bg-[#B6FF35] glow-neon"
-            >
-              Quero receber meu diagnóstico
-              <ArrowRight className="h-4 w-4" />
-            </a>
+      <div className="relative z-20 mt-auto w-full">
+        <div className="mx-auto max-w-7xl px-6 pb-16 pt-[54vh] lg:pt-0 lg:pb-28">
+          <div className="max-w-xl">
+            <h1 className="text-[28px] sm:text-4xl lg:text-5xl font-black leading-[1.08] lg:leading-[1.1] tracking-tight text-foreground text-center lg:text-left">
+              Aumentamos o <span className="text-neon">faturamento da sua clínica</span> internalizando o seu comercial e implantando a nossa metodologia de <span className="text-neon">geração de demanda, vendas e dados</span>.
+            </h1>
+            <p className="mt-5 text-sm sm:text-base lg:text-lg leading-relaxed text-muted-foreground/90 font-medium text-center lg:text-left">
+              Entregamos o paciente na sua agenda para você realizar a consulta e fechar seu protocolo ou procedimento.
+            </p>
+            <div className="mt-8 flex justify-center lg:justify-start">
+              <a
+                href="#form"
+                className="inline-flex w-full max-w-sm lg:w-auto h-[54px] sm:h-[58px] items-center justify-center gap-2 rounded-lg bg-neon px-8 text-sm sm:text-base font-extrabold uppercase tracking-wider text-black transition-all hover:bg-[#B6FF35] glow-neon"
+              >
+                Quero receber meu diagnóstico
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
