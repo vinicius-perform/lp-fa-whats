@@ -158,6 +158,12 @@ function Hero() {
       </div>
 
       <div className="relative mx-auto max-w-4xl px-6 pt-16 pb-24 text-center lg:pt-28 lg:pb-36 flex flex-col items-center">
+        {/* Foto do Homem */}
+        <img
+          src="https://fazendoacontecer.site/wp-content/uploads/2026/07/cc9debfb-a6c7-431b-b55e-668e55a1cdc4.png"
+          alt="Fazendo Acontecer"
+          className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[400px] h-auto object-contain mb-8 filter drop-shadow-[0_0_30px_rgba(149,236,0,0.15)] animate-fade-in"
+        />
         <h1 className="text-3xl font-black leading-[1.15] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
           Aumentamos o <span className="text-neon">faturamento da sua clínica</span> internalizando o seu comercial e implantando a nossa metodologia de <span className="text-neon">geração de demanda, vendas e dados</span>.
         </h1>
