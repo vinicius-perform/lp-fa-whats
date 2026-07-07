@@ -157,20 +157,20 @@ function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 pt-12 sm:pt-16 pb-20 lg:pt-24 lg:pb-28">
-        <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:items-center">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 pt-0 sm:pt-16 pb-20 lg:pt-24 lg:pb-28">
+        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:items-center">
           {/* Left Column — Text */}
-          <div className="min-w-0 text-left flex flex-col items-start">
-            <h1 className="text-3xl font-black leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-5xl">
+          <div className="order-2 lg:order-1 min-w-0 text-center lg:text-left flex flex-col items-center lg:items-start px-2 sm:px-0">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black leading-[1.2] lg:leading-[1.1] tracking-tight text-foreground">
               Aumentamos o <span className="text-neon">faturamento da sua clínica</span> internalizando o seu comercial e implantando a nossa metodologia de <span className="text-neon">geração de demanda, vendas e dados</span>.
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg font-medium">
+            <p className="mt-5 max-w-md sm:max-w-xl lg:max-w-xl text-[13px] sm:text-base lg:text-lg leading-relaxed text-muted-foreground/80 font-medium">
               Entregamos o paciente na sua agenda para você realizar a consulta e fechar seu protocolo ou procedimento.
             </p>
-            <div className="mt-8">
+            <div className="mt-8 w-full flex justify-center lg:justify-start">
               <a
                 href="#form"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-neon px-8 py-4 text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-[#B6FF35] glow-neon"
+                className="inline-flex w-full max-w-sm sm:max-w-md lg:w-auto h-[54px] sm:h-[58px] items-center justify-center gap-2 rounded-lg bg-neon px-8 text-sm sm:text-base font-extrabold uppercase tracking-wider text-black transition-all hover:bg-[#B6FF35] glow-neon"
               >
                 Quero receber meu diagnóstico
                 <ArrowRight className="h-4 w-4" />
@@ -179,12 +179,17 @@ function Hero() {
           </div>
 
           {/* Right Column — Photo of the Man */}
-          <div className="w-full flex justify-center lg:justify-end">
+          <div className="order-1 lg:order-2 w-full relative h-[42vh] sm:h-[48vh] lg:h-auto overflow-hidden lg:overflow-visible flex justify-center lg:justify-end">
+            {/* Ambient Backlight Glow behind the portrait */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[320px] w-[320px] rounded-full opacity-20 blur-[80px] pointer-events-none z-0" style={{ background: "radial-gradient(circle, #95EC00 0%, transparent 75%)" }} />
+            
             <img
               src="https://fazendoacontecer.site/wp-content/uploads/2026/07/cc9debfb-a6c7-431b-b55e-668e55a1cdc4.png"
               alt="Fazendo Acontecer"
-              className="w-full max-w-[280px] sm:max-w-[340px] lg:max-w-full h-auto object-contain rounded-2xl filter drop-shadow-[0_0_40px_rgba(149,236,0,0.15)] animate-fade-in"
+              className="w-full h-full object-cover object-top lg:w-auto lg:h-auto lg:max-w-full lg:object-contain filter lg:drop-shadow-[0_0_40px_rgba(149,236,0,0.15)] animate-fade-in relative z-10"
             />
+            {/* Gradient overlay on mobile to transition smoothly to black background */}
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background via-background/60 to-transparent lg:hidden z-20" />
           </div>
         </div>
       </div>
