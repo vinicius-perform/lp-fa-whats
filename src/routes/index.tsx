@@ -1,28 +1,107 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
-import { ArrowRight, Play } from "lucide-react";
+import { useState, type FormEvent, type ReactNode } from "react";
+import { ArrowRight, Play, DollarSign, TrendingUp, Target, Check } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const LOGOS = [
-  "Clínica Prime Estética",
-  "Instituto Harmonie",
-  "Dra. Mariana Estética",
-  "Bodyplastia",
-  "Clínica Essenza",
-  "Núcleo Facial",
-  "Instituto Renovare",
-  "Estética Avançada",
-];
 
-const CASES = [
-  { tag: "CLÍNICA DE ESTÉTICA", headline: "A FA nos ajudou a transformar contatos em pacientes todos os meses" },
-  { tag: "HARMONIZAÇÃO FACIAL", headline: "Encontramos gargalos no atendimento que impediam novas avaliações" },
-  { tag: "ESTÉTICA AVANÇADA", headline: "Paramos de depender só de indicação para gerar demanda qualificada" },
-  { tag: "CLÍNICA PREMIUM", headline: "Organizamos o comercial e melhoramos o acompanhamento dos pacientes" },
-  { tag: "PROCEDIMENTOS HIGH TICKET", headline: "Em poucas semanas, enxergamos onde as oportunidades estavam sendo perdidas" },
+
+interface CaseStudy {
+  city: string;
+  videoUrl: string;
+  thumbnail: string;
+  headline: ReactNode;
+  stats: {
+    investment: string;
+    revenue: string;
+    roi: string;
+  };
+  bullets: string[];
+}
+
+const CASE_STUDIES: CaseStudy[] = [
+  {
+    city: "FORTALEZA/CE",
+    videoUrl: "https://fazendoacontecer.site/wp-content/uploads/2026/06/lannay.webm",
+    thumbnail: "/thumb lannay.webp",
+    headline: (
+      <>
+        Essa cirurgiã-dentista multiplicou seus resultados, saindo de <span className="text-neon font-bold">R$ 30 mil</span> para mais de <span className="text-neon font-bold">R$ 500 mil/mês</span> com apenas <span className="text-neon font-bold">R$ 12 mil</span> de investimento.
+      </>
+    ),
+    stats: {
+      investment: "R$ 12 mil",
+      revenue: "R$ 500 mil+",
+      roi: "41x ROI",
+    },
+    bullets: [
+      "Estruturação comercial e processos de captação desenhados sob medida.",
+      "Time treinado para pré-atendimento e conversão em alta performance.",
+      "Previsibilidade absoluta com rastreabilidade total de cada lead gerado.",
+    ],
+  },
+  {
+    city: "SÃO PAULO/SP",
+    videoUrl: "https://fazendoacontecer.site/wp-content/uploads/2026/01/dep-dramarcela-1.webm",
+    thumbnail: "/thumb marcela.webp",
+    headline: (
+      <>
+        Como essa médica largou os plantões exaustivos e hoje fatura mais de <span className="text-neon font-bold">R$ 220 mil</span> com investimento de apenas <span className="text-neon font-bold">R$ 10 mil</span>.
+      </>
+    ),
+    stats: {
+      investment: "R$ 10 mil",
+      revenue: "R$ 220 mil+",
+      roi: "22x ROI",
+    },
+    bullets: [
+      "Transição segura e planejada dos plantões para o consultório próprio.",
+      "Geração de demanda qualificada focada em procedimentos de alto valor.",
+      "Comercial treinado para agendamento e fechamento na primeira consulta.",
+    ],
+  },
+  {
+    city: "VILA VELHA/ES",
+    videoUrl: "https://fazendoacontecer.site/wp-content/uploads/2026/07/uri_ifs___V_MO7-PeBSuqG1Oeps5YgIKtnJW3-9mhF2JQC4TC9nHHU.webm",
+    thumbnail: "/thumb dr pedro.png",
+    headline: (
+      <>
+        Como o Dr. Pedro Lima faturou <span className="text-neon font-bold">R$ 318 mil</span> em Janeiro (mês tradicionalmente ruim) investindo apenas <span className="text-neon font-bold">R$ 21 mil</span>.
+      </>
+    ),
+    stats: {
+      investment: "R$ 21 mil",
+      revenue: "R$ 318 mil",
+      roi: "15x ROI",
+    },
+    bullets: [
+      "Metodologia ativa que quebra a barreira da sazonalidade comercial.",
+      "Acompanhamento em tempo real das métricas do CRM e de conversão.",
+      "Processo comercial previsível que garante estabilidade financeira.",
+    ],
+  },
+  {
+    city: "BRASÍLIA/DF",
+    videoUrl: "https://fazendoacontecer.site/wp-content/uploads/2026/07/uri_ifs___V_015JtsY5elTU0ZxaDbcJI6sQBqUYryenRf0yFICm7Gw.webm",
+    thumbnail: "/thumb cris.png",
+    headline: (
+      <>
+        Como o Dr. Cristiano faturou mais de <span className="text-neon font-bold">R$ 550 mil</span> nos seus 3 primeiros meses de parceria com a FA.
+      </>
+    ),
+    stats: {
+      investment: "R$ 20 mil",
+      revenue: "R$ 550 mil",
+      roi: "27x ROI",
+    },
+    bullets: [
+      "Internalização comercial completa eliminando tarefas administrativas do médico.",
+      "Agenda preenchida apenas com pacientes pré-qualificados e validados.",
+      "Faturamento acelerado e escalável desde as primeiras semanas de operação.",
+    ],
+  },
 ];
 
 function Index() {
@@ -85,34 +164,13 @@ function Hero() {
               Para clínicas de estética e alta performance
             </div>
 
-            <h1 className="mt-6 text-4xl font-black leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-[3.75rem]">
-              Receba um{" "}
-              <span className="text-neon">Diagnóstico Estratégico</span> para gerar mais{" "}
-              <span className="text-neon">pacientes qualificados</span> e organizar o crescimento da sua clínica nos{" "}
-              <span className="text-neon">próximos 90 dias</span>.
+            <h1 className="mt-6 text-3xl font-black leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+              Aumentamos o <span className="text-neon">faturamento da sua clínica</span> internalizando o seu comercial e implantando a nossa metodologia de <span className="text-neon">geração de demanda, vendas e dados</span>.
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Mais do que atrair contatos, a FA ajuda clínicas de estética a identificarem gargalos na captação,
-              atendimento, vendas e acompanhamento comercial para transformar oportunidades em pacientes reais.
+              Entregamos o paciente na sua agenda para você realizar a consulta e fechar seu protocolo ou procedimento.
             </p>
-
-            {/* Social proof */}
-            <div className="mt-12">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-                Clínicas e profissionais da saúde confiam na FA para estruturar crescimento com demanda, vendas e dados.
-              </p>
-              <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-4">
-                {LOGOS.map((name) => (
-                  <div
-                    key={name}
-                    className="flex h-10 items-center text-[13px] font-semibold uppercase tracking-wider text-muted-foreground/70 transition-colors hover:text-foreground"
-                  >
-                    {name}
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Right — Form */}
@@ -127,10 +185,90 @@ function Hero() {
 
 function LeadForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const phone = formData.get("phone") as string;
+    const email = formData.get("email") as string;
+    const clinicName = formData.get("clinicName") as string;
+    const objective = formData.get("objective") as string;
+    const revenue = formData.get("revenue") as string;
+    const traffic = formData.get("traffic") as string;
+
+    // Lógica de cálculo do Lead Score
+    let score = 0;
+
+    // Faturamento
+    if (revenue === "Até R$30 mil/mês") score += 10;
+    else if (revenue === "R$30 mil a R$80 mil/mês") score += 25;
+    else if (revenue === "R$80 mil a R$150 mil/mês") score += 50;
+    else if (revenue === "R$150 mil a R$300 mil/mês") score += 75;
+    else if (revenue === "Acima de R$300 mil/mês") score += 100;
+
+    // Tráfego Pago
+    if (traffic === "Sim, atualmente") score += 30;
+    else if (traffic === "Já investi, mas parei") score += 20;
+    else if (traffic === "Ainda não invisto") score += 10;
+    else if (traffic === "Não sei responder") score += 5;
+
+    // Objetivo principal
+    if (objective === "Vender procedimentos de maior valor") score += 20;
+    else if (objective === "Aumentar previsibilidade de vendas") score += 20;
+    else if (objective === "Atrair mais pacientes qualificados") score += 15;
+    else if (objective === "Melhorar o atendimento comercial") score += 15;
+    else if (objective === "Organizar CRM e acompanhamento") score += 10;
+    else if (objective === "Ainda não sei exatamente") score += 5;
+
+    // Classificação do Tipo de Lead
+    let leadType: "A" | "B" | "C" = "C";
+    if (score >= 85) {
+      leadType = "A";
+    } else if (score >= 50) {
+      leadType = "B";
+    } else {
+      leadType = "C";
+    }
+
+    const payload = {
+      timestamp: new Date().toLocaleString("pt-BR"),
+      name,
+      phone,
+      email,
+      clinicName,
+      objective,
+      revenue,
+      traffic,
+      score,
+      leadType,
+    };
+
+    try {
+      // Endpoint webhook configurável via env ou direto no código
+      const WEBHOOK_URL = import.meta.env.VITE_SHEETS_WEBHOOK_URL || "https://script.google.com/macros/s/AKfycbxKuvG4Dn1m5L1uRmOhOx8lVqHJKyn1D488N3peSq7nlnRGwXpxO3m2oD6l-p7iXnAZ/exec";
+      
+      if (WEBHOOK_URL) {
+        await fetch(WEBHOOK_URL, {
+          method: "POST",
+          mode: "no-cors", // Necessário para evitar bloqueio CORS com Google Apps Script
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+      } else {
+        console.log("Planilha não configurada nas variáveis de ambiente. Dados locais do Lead:", payload);
+      }
+    } catch (error) {
+      console.error("Erro ao enviar dados para a planilha:", error);
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }
   };
 
   const inputCls =
@@ -161,13 +299,12 @@ function LeadForm() {
       </div>
 
       <div className="space-y-3">
-        <input required type="text" placeholder="Nome completo" className={inputCls} />
-        <input required type="tel" placeholder="WhatsApp" className={inputCls} />
-        <input required type="email" placeholder="E-mail" className={inputCls} />
-        <input required type="text" placeholder="Nome da sua clínica" className={inputCls} />
-        <input required type="text" placeholder="Cidade/Estado" className={inputCls} />
+        <input required name="name" type="text" placeholder="Nome completo" className={inputCls} />
+        <input required name="phone" type="tel" placeholder="Número de telefone" className={inputCls} />
+        <input required name="email" type="email" placeholder="E-mail" className={inputCls} />
+        <input required name="clinicName" type="text" placeholder="Nome da sua clínica" className={inputCls} />
 
-        <select required defaultValue="" className={inputCls}>
+        <select required name="objective" defaultValue="" className={inputCls}>
           <option value="" disabled>Qual o principal objetivo hoje?</option>
           <option>Atrair mais pacientes qualificados</option>
           <option>Melhorar o atendimento comercial</option>
@@ -177,7 +314,7 @@ function LeadForm() {
           <option>Ainda não sei exatamente</option>
         </select>
 
-        <select required defaultValue="" className={inputCls}>
+        <select required name="revenue" defaultValue="" className={inputCls}>
           <option value="" disabled>Faturamento mensal aproximado da clínica</option>
           <option>Até R$30 mil/mês</option>
           <option>R$30 mil a R$80 mil/mês</option>
@@ -186,7 +323,7 @@ function LeadForm() {
           <option>Acima de R$300 mil/mês</option>
         </select>
 
-        <select required defaultValue="" className={inputCls}>
+        <select required name="traffic" defaultValue="" className={inputCls}>
           <option value="" disabled>Já investe em tráfego pago?</option>
           <option>Sim, atualmente</option>
           <option>Já investi, mas parei</option>
@@ -197,9 +334,10 @@ function LeadForm() {
 
       <button
         type="submit"
-        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-neon px-6 py-4 text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-[#B6FF35] glow-neon"
+        disabled={isSubmitting}
+        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-neon px-6 py-4 text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-[#B6FF35] glow-neon disabled:opacity-50"
       >
-        Quero receber meu diagnóstico
+        {isSubmitting ? "Enviando..." : "Quero receber meu diagnóstico"}
         <ArrowRight className="h-4 w-4" />
       </button>
 
@@ -212,93 +350,182 @@ function LeadForm() {
 
 function Cases() {
   return (
-    <section className="relative border-t border-border/50 bg-background py-24 lg:py-32">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-1/2 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-10 blur-[160px]" style={{ background: "radial-gradient(circle, #95EC00 0%, transparent 70%)" }} />
+    <section className="relative border-t border-border/50 bg-background py-16 lg:py-24 space-y-12">
+      {/* Title section */}
+      <div className="relative mx-auto max-w-7xl px-6 mb-16 text-center">
+        <span className="inline-flex items-center rounded-full border border-neon/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-neon bg-neon/5">
+          Cases de sucesso
+        </span>
+        <h2 className="mt-5 text-3xl font-black tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+          Nossos resultados falam por nós
+        </h2>
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6">
-        <div className="flex flex-col items-center text-center">
-          <span className="inline-flex items-center rounded-full border border-neon/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-neon">
-            Cases de sucesso
-          </span>
-          <h2 className="mt-5 text-3xl font-black tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-            Nossos resultados falam por nós
-          </h2>
-        </div>
+      {CASE_STUDIES.map((c, i) => (
+        <CaseStudySection key={i} study={c} index={i} />
+      ))}
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {CASES.slice(0, 3).map((c, i) => (
-            <CaseCard key={i} {...c} />
-          ))}
-        </div>
-        <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:mx-auto lg:max-w-[66%] lg:grid-cols-2">
-          {CASES.slice(3, 5).map((c, i) => (
-            <CaseCard key={i} {...c} />
-          ))}
-        </div>
-
-        <div className="mt-16 flex justify-center">
-          <a
-            href="#form"
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-neon px-8 py-4 text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-[#B6FF35] glow-neon"
-          >
-            Quero receber meu diagnóstico
-            <ArrowRight className="h-4 w-4" />
-          </a>
-        </div>
+      <div className="mt-20 flex justify-center pt-8">
+        <a
+          href="#form"
+          className="inline-flex items-center justify-center gap-2 rounded-lg bg-neon px-8 py-4 text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-[#B6FF35] glow-neon"
+        >
+          Quero receber meu diagnóstico
+          <ArrowRight className="h-4 w-4" />
+        </a>
       </div>
     </section>
   );
 }
 
-function CaseCard({ tag, headline }: { tag: string; headline: string }) {
+function CaseStudySection({ study, index }: { study: CaseStudy; index: number }) {
+  const isReversed = index % 2 === 1;
+
   return (
-    <div className="group relative aspect-[9/14] overflow-hidden rounded-2xl border border-border bg-[#0e0e0e] transition-all hover:border-neon/40 hover:shadow-[0_0_60px_-20px_rgba(149,236,0,0.4)]">
-      {/* Placeholder abstract bg */}
-      <div
-        className="absolute inset-0 opacity-70 transition-transform duration-700 group-hover:scale-105"
-        style={{
-          background:
-            "linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 50%, #151515 100%), radial-gradient(circle at 30% 40%, rgba(149,236,0,0.08), transparent 60%)",
-        }}
-      />
-      {/* subtle noise/pattern */}
-      <div
-        className="absolute inset-0 opacity-30"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 70% 30%, rgba(149,236,0,0.15), transparent 50%), radial-gradient(circle at 20% 80%, rgba(255,255,255,0.04), transparent 50%)",
-        }}
-      />
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20" />
+    <div className={`w-full py-16 lg:py-24 ${index % 2 === 1 ? "bg-[#090909]/40 border-y border-border/20" : ""}`}>
+      <div className="mx-auto max-w-7xl px-6">
+        <div className={`flex flex-col lg:flex-row items-center lg:items-start justify-center gap-12 lg:gap-16 ${isReversed ? "lg:flex-row-reverse" : ""}`}>
+          {/* Left / Info Column */}
+          <div className="w-full lg:max-w-[620px] flex flex-col">
+            {/* Top tag */}
+            <div className="flex items-center gap-3">
+              <span className="h-px w-6 bg-neon" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                Depoimento & Resultados
+              </span>
+            </div>
 
-      {/* Tag */}
-      <div className="absolute left-4 top-4">
-        <span className="inline-flex items-center rounded-full border border-white/15 bg-black/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-foreground backdrop-blur-sm">
-          {tag}
-        </span>
-      </div>
+            {/* Title */}
+            <h3 className="mt-5 text-3xl sm:text-4xl font-black tracking-tight text-foreground uppercase leading-none">
+              Case de sucesso de{" "}
+              <span className="text-neon underline decoration-2 underline-offset-8">
+                {study.city}
+              </span>
+            </h3>
 
-      {/* Play button */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-neon shadow-[0_0_40px_rgba(149,236,0,0.6)] transition-transform group-hover:scale-110">
-          <Play className="h-6 w-6 translate-x-0.5 fill-black text-black" />
+            {/* Headline */}
+            <p className="mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed font-medium">
+              {study.headline}
+            </p>
+
+            {/* Metrics cards grid */}
+            <div className="grid grid-cols-3 gap-3 sm:gap-4 mt-8">
+              <div className="rounded-2xl border border-border/60 bg-[#111111]/70 p-3 sm:p-4 shadow-lg backdrop-blur-sm">
+                <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                  <DollarSign className="h-3.5 w-3.5 text-neon" />
+                  Investimento
+                </div>
+                <p className="mt-2 text-sm sm:text-base font-black text-foreground">
+                  {study.stats.investment}
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-border/60 bg-[#111111]/70 p-3 sm:p-4 shadow-lg backdrop-blur-sm">
+                <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                  <TrendingUp className="h-3.5 w-3.5 text-neon" />
+                  Faturamento
+                </div>
+                <p className="mt-2 text-sm sm:text-base font-black text-foreground">
+                  {study.stats.revenue}
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-border/60 bg-[#111111]/70 p-3 sm:p-4 shadow-lg backdrop-blur-sm">
+                <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                  <Target className="h-3.5 w-3.5 text-neon" />
+                  Retorno (ROI)
+                </div>
+                <p className="mt-2 text-sm sm:text-base font-black text-neon">
+                  {study.stats.roi}
+                </p>
+              </div>
+            </div>
+
+            {/* Bullet points */}
+            <div className="mt-8 space-y-4">
+              {study.bullets.map((bullet, idx) => (
+                <div key={idx} className="flex items-start gap-3">
+                  <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-neon/20 bg-neon/10 text-neon">
+                    <Check className="h-3 w-3" />
+                  </div>
+                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                    {bullet}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right / Video Column */}
+          <div className="w-full max-w-[280px] lg:max-w-[300px] shrink-0 mx-auto lg:mx-0">
+            <CaseVideo videoUrl={study.videoUrl} thumbnail={study.thumbnail} />
+          </div>
         </div>
       </div>
+    </div>
+  );
+}
 
-      {/* Bottom content */}
-      <div className="absolute inset-x-0 bottom-0 p-5">
-        <p className="text-sm font-semibold leading-snug text-foreground">
-          {headline}
-        </p>
-        <div className="mt-3 flex items-center gap-2">
-          <span className="text-[10px] font-black tracking-widest text-foreground">FA</span>
-          <span className="h-1 w-1 rounded-full bg-neon" />
-          <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">Fazendo Acontecer</span>
+function CaseVideo({ videoUrl, thumbnail }: { videoUrl: string; thumbnail?: string }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  return (
+    <div
+      onClick={() => {
+        if (!isPlaying) setIsPlaying(true);
+      }}
+      className="group relative aspect-[9/16] overflow-hidden rounded-3xl border border-[#222222] bg-[#0e0e0e] transition-all cursor-pointer hover:border-neon/40 hover:shadow-[0_0_60px_-20px_rgba(149,236,0,0.3)] w-full shadow-2xl"
+    >
+      {isPlaying ? (
+        <div className="absolute inset-0 z-20 bg-black">
+          <video
+            src={videoUrl}
+            controls
+            autoPlay
+            playsInline
+            className="h-full w-full object-cover"
+          />
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsPlaying(false);
+            }}
+            className="absolute top-4 right-4 z-30 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-sm transition-all hover:bg-black/80 hover:scale-105"
+          >
+            ✕
+          </button>
         </div>
-      </div>
+      ) : (
+        <>
+          {thumbnail ? (
+            <img
+              src={thumbnail}
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-102"
+              alt="Case thumbnail"
+            />
+          ) : (
+            <video
+              src={`${videoUrl}#t=0.1`}
+              preload="metadata"
+              muted
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-102"
+            />
+          )}
+
+          {/* Overlay gradient to keep it looking dark and premium */}
+          <div className="absolute inset-0 bg-black/10 transition-opacity group-hover:bg-black/5" />
+
+          {/* Play button (only if not already included in the thumbnail) */}
+          {!thumbnail && (
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-neon shadow-[0_0_40px_rgba(149,236,0,0.6)] transition-transform group-hover:scale-110">
+                <Play className="h-6 w-6 translate-x-0.5 fill-black text-black" />
+              </div>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }
