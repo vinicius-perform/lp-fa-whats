@@ -104,7 +104,7 @@ const CASE_STUDIES: CaseStudy[] = [
   },
 ];
 
-const WHATSAPP_URL = import.meta.env.VITE_WHATSAPP_URL || "https://wa.me/5511952453638";
+const WHATSAPP_URL = import.meta.env.VITE_WHATSAPP_URL || "https://wa.link/fwz6x2";
 
 function Index() {
   return (
