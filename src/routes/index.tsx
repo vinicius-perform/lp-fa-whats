@@ -142,41 +142,34 @@ function Logo() {
 
 function Hero() {
   return (
-    <section id="topo" className="relative overflow-hidden min-h-[100svh] lg:min-h-screen flex flex-col">
-      {/* ===== VIDEO BACKGROUND — 100% opacity, anchored top ===== */}
-      <video
-        src="https://fazendoacontecer.site/wp-content/uploads/2026/07/IMG_4725.webm"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover object-[center_10%] z-0"
-      />
+    <section id="topo" className="relative overflow-hidden min-h-[85svh] lg:min-h-screen flex flex-col justify-center bg-background">
+      {/* Glows abstractos de fundo */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full opacity-20 blur-[130px]" style={{ background: "radial-gradient(circle, #95EC00 0%, transparent 70%)" }} />
+        <div className="absolute top-1/3 -right-40 h-[600px] w-[600px] rounded-full opacity-15 blur-[150px]" style={{ background: "radial-gradient(circle, #95EC00 0%, transparent 70%)" }} />
+      </div>
 
-      {/* Grid sutil */}
+      {/* Grid sutil em verde */}
       <div
-        className="pointer-events-none absolute inset-0 z-10 opacity-[0.025]"
+        className="pointer-events-none absolute inset-0 z-10 opacity-[0.035]"
         style={{
           backgroundImage:
-            "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
+            "linear-gradient(to right, #95EC00 1px, transparent 1px), linear-gradient(to bottom, #95EC00 1px, transparent 1px)",
           backgroundSize: "80px 80px",
         }}
       />
 
       {/* ===== CONTENT ===== */}
-      <div className="relative z-20 mt-auto w-full">
-        {/* Sombra localizada APENAS atrás do bloco de texto */}
-        <div className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-background/95 via-background/70 to-transparent pointer-events-none" />
-
-        <div className="relative mx-auto max-w-7xl px-6 pb-16 pt-[52vh] lg:pt-0 lg:pb-28">
-          <div className="max-w-xl">
-            <h1 className="text-[28px] sm:text-4xl lg:text-5xl font-black leading-[1.08] lg:leading-[1.1] tracking-tight text-foreground text-center lg:text-left">
+      <div className="relative z-20 w-full py-20 lg:py-0">
+        <div className="relative mx-auto max-w-7xl px-6">
+          <div className="max-w-3xl lg:max-w-4xl text-center lg:text-left flex flex-col items-center lg:items-start">
+            <h1 className="text-[32px] sm:text-5xl lg:text-6xl font-black leading-[1.05] lg:leading-[1.1] tracking-tight text-foreground">
               Aumentamos o <span className="text-neon">faturamento da sua clínica</span> internalizando o seu comercial e implantando a nossa metodologia de <span className="text-neon">geração de demanda, vendas e dados</span>.
             </h1>
-            <p className="mt-5 text-sm sm:text-base lg:text-lg leading-relaxed text-muted-foreground/90 font-medium text-center lg:text-left">
+            <p className="mt-6 text-base sm:text-lg lg:text-xl leading-relaxed text-muted-foreground/90 font-medium max-w-2xl">
               Entregamos o paciente na sua agenda para você realizar a consulta e fechar seu protocolo ou procedimento.
             </p>
-            <div className="mt-8 flex justify-center lg:justify-start">
+            <div className="mt-10 flex w-full justify-center lg:justify-start">
               <a
                 href="#form"
                 className="inline-flex w-full max-w-sm lg:w-auto h-[54px] sm:h-[58px] items-center justify-center gap-2 rounded-lg bg-neon px-8 text-sm sm:text-base font-extrabold uppercase tracking-wider text-black transition-all hover:bg-[#B6FF35] glow-neon"
