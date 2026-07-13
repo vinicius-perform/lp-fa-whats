@@ -528,7 +528,7 @@ function MultistepForm({ setSubmitted, setLeadName, utms }: MultistepFormProps) 
     setIsSubmitting(true);
     setLeadName(name);
 
-    // Calcular lead score simplificado
+    // Calcular lead score simplificado conforme opções exatas do Dropdown
     let score = 0;
     if (faturamento === "Entre R$ 35 mil e R$ 60 mil") score += 20;
     else if (faturamento === "Entre R$ 60 mil e R$ 100 mil") score += 40;
@@ -536,15 +536,18 @@ function MultistepForm({ setSubmitted, setLeadName, utms }: MultistepFormProps) 
     else if (faturamento === "Entre R$ 200 mil e R$ 500 mil") score += 80;
     else if (faturamento === "Acima de R$ 500 mil") score += 100;
 
-    if (investimento === "De R$ 3 mil a R$ 7 mil" || investimento === "Entre R$ 3 mil e R$ 7 mil") score += 15;
-    else if (investimento === "De R$ 7 mil a R$ 15 mil" || investimento === "Entre R$ 7 mil e R$ 15 mil") score += 25;
-    else if (investimento === "Acima de R$ 15 mil") score += 35;
+    if (investimento === "Ainda não invisto") score += 5;
+    else if (investimento === "Até R$ 3 mil") score += 10;
+    else if (investimento === "Entre R$ 3 mil e R$ 7 mil") score += 20;
+    else if (investimento === "Entre R$ 7 mil e R$ 15 mil") score += 30;
+    else if (investimento === "Acima de R$ 15 mil") score += 40;
     else score += 5;
 
-    let leadType: "A" | "B" | "C" = "C";
-    if (score >= 80) leadType = "A";
-    else if (score >= 45) leadType = "B";
-    else leadType = "C";
+    let leadType: "A" | "B" | "C" | "D" = "C";
+    if (score >= 90) leadType = "A";
+    else if (score >= 60) leadType = "B";
+    else if (score >= 35) leadType = "C";
+    else leadType = "D";
 
     // Criar o payload no formato esperado pelo CRM e planilhas
     const payload = {
@@ -601,17 +604,22 @@ function MultistepForm({ setSubmitted, setLeadName, utms }: MultistepFormProps) 
           win.fbq("track", "Lead", {
             content_name: "Diagnostico FA Hibrido",
             currency: "BRL",
-            predicted_lead_type: leadType
+            predicted_lead_type: `Lead ${leadType}`
           });
           win.fbq("trackCustom", "LeadForm", {
             content_name: "Diagnostico FA Hibrido",
-            predicted_lead_type: leadType
+            predicted_lead_type: `Lead ${leadType}`
+          });
+          // Dispara o evento de Pixel específico do Tipo de Lead: Lead A, Lead B, Lead C, Lead D
+          win.fbq("trackCustom", `Lead ${leadType}`, {
+            content_name: "Diagnostico FA Hibrido",
+            score: score
           });
         }
         if (win.dataLayer && Array.isArray(win.dataLayer)) {
           win.dataLayer.push({
             event: "lead_form_submitted",
-            lead_type: leadType
+            lead_type: `Lead ${leadType}`
           });
         }
 
