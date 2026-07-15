@@ -38,51 +38,61 @@
 
 :root {
   --radius: 0.75rem;
-  --background: oklch(0.06 0 0);
-  --foreground: oklch(1 0 0);
-  --card: oklch(0.11 0 0);
-  --card-foreground: oklch(1 0 0);
-  --popover: oklch(0.11 0 0);
-  --popover-foreground: oklch(1 0 0);
-  --primary: oklch(0.9 0.28 132);
-  --primary-foreground: oklch(0.06 0 0);
-  --secondary: oklch(0.16 0 0);
-  --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.14 0 0);
-  --muted-foreground: oklch(0.72 0 0);
-  --accent: oklch(0.16 0 0);
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.6 0.22 25);
-  --border: oklch(0.22 0 0);
-  --input: oklch(0.16 0 0);
-  --ring: oklch(0.9 0.28 132);
-  --neon: oklch(0.9 0.28 132);
-  --neon-bright: oklch(0.93 0.28 132);
-  --surface: oklch(0.09 0 0);
-  --surface-2: oklch(0.13 0 0);
+  
+  /* Temas Escuros */
+  --bg-dark-1: #050705;
+  --bg-dark-2: #090B09;
+  --bg-dark-3: #101310;
+  --card-dark: #111411;
+  --border-dark: #252B25;
+  --text-dark-primary: #F7F8F5;
+  --text-dark-secondary: #B7BFB6;
+  
+  /* Temas Claros */
+  --bg-light-1: #F5F6F2;
+  --bg-light-2: #EBEEE8;
+  --bg-light-3: #E3E7DF;
+  --card-light: #FFFFFF;
+  --border-light: #D8DDD5;
+  --text-light-primary: #111511;
+  --text-light-secondary: #343A34;
+
+  /* Cores de Destaque */
+  --neon: #8CFF00;
+  --neon-secondary: #68BF00;
+  --neon-dark: #375F0A;
+  
+  /* Fallbacks Tailwind padrão */
+  --background: #050705;
+  --foreground: #F7F8F5;
+  --border: #252B25;
+  --card: #111411;
+  --card-foreground: #F7F8F5;
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 .dark { color-scheme: dark; }
 
 @layer base {
-  * { border-color: var(--color-border); }
+  * { border-color: var(--border); }
   html { color-scheme: dark; scroll-behavior: smooth; }
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--bg-dark-1);
+    color: var(--text-dark-primary);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
 }
 
 @utility text-neon {
-  color: #95EC00;
+  color: #8CFF00;
 }
 @utility bg-neon {
-  background-color: #95EC00;
+  background-color: #8CFF00;
 }
 @utility glow-neon {
-  box-shadow: 0 0 40px -8px rgba(149, 236, 0, 0.45), 0 0 120px -40px rgba(149, 236, 0, 0.35);
+  box-shadow: 0 0 40px -8px rgba(140, 255, 0, 0.4), 0 0 120px -40px rgba(140, 255, 0, 0.3);
 }
 
 @keyframes fadeIn {
@@ -99,3 +109,5 @@
 .animate-fade-in {
   animation: fadeIn 0.2s ease-out forwards;
 }
+
+

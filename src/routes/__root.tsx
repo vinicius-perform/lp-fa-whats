@@ -115,7 +115,6 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="pt-BR">
       <head>
         <HeadContent />
-        {/* Meta Pixel Code */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -140,7 +139,6 @@ function RootShell({ children }: { children: ReactNode }) {
             src="https://www.facebook.com/tr?id=1049112404466926&ev=PageView&noscript=1"
           />
         </noscript>
-        {/* End Meta Pixel Code */}
       </head>
       <body>
         {children}
