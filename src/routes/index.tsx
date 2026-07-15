@@ -12,10 +12,7 @@ import {
   X, 
   Lock, 
   Clock,
-  CheckCircle2,
-  FileSearch,
-  Target,
-  TrendingUp
+  CheckCircle2
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -167,7 +164,6 @@ function Index() {
   });
 
   useEffect(() => {
-    // Tracking de Inicialização
     if (typeof window !== "undefined") {
       const win = window as any;
       if (typeof win.fbq === "function") {
@@ -188,7 +184,6 @@ function Index() {
       gclid: getParam("gclid")
     });
 
-    // Tracking de Scroll Depth
     let scroll50Fired = false;
     let scroll75Fired = false;
 
@@ -220,55 +215,41 @@ function Index() {
   return (
     <div className="min-h-screen bg-[#050705] text-[#F4F6F1] font-sans selection:bg-[#8CFF00] selection:text-[#050705]">
       
-      {/* 4. BARRA SUPERIOR (Preta/Verde Escuro) */}
+      {/* Barra de Qualificação Superior */}
       <div className="bg-[#0B0E0B] border-b border-[#252A25] py-2.5 px-4 flex items-center justify-center gap-2 text-xs sm:text-sm font-bold text-[#F4F6F1] uppercase tracking-wider shrink-0 text-center">
         <span className="h-2 w-2 rounded-full bg-[#8CFF00] animate-pulse" />
         <span>DIAGNÓSTICO GRATUITO PARA CLÍNICAS COM FATURAMENTO A PARTIR DE R$ 35 MIL/MÊS</span>
       </div>
 
-      {/* 5. HEADER (Simples) */}
+      {/* Header Minimalista */}
       <Header />
 
-      {/* 6 & 8. HERO COM FORMULÁRIO (Primeira Dobra Otimizada) */}
+      {/* 1. HERO COM FORMULÁRIO */}
       <Hero setLeadName={setLeadName} utms={utms} />
 
-      {/* 9. FAIXA DE RESULTADOS */}
-      <FaixaResultadosSection />
+      {/* 2. PASSO A PASSO */}
+      <PassoAPassoSection />
 
-      {/* 10. CASE PRINCIPAL */}
+      {/* 3. PROVA, NÃO APENAS PROMESSA */}
       <CasePrincipalSection onOpenVideo={handleOpenVideo} />
 
-      {/* 11. O QUE O VISITANTE RECEBE */}
-      <OQueVoceRecebeSection />
-
-      {/* 12. SEÇÃO AGRESSIVA SOBRE PERDA DE DINHEIRO */}
-      <PerdaDinheiroSection />
-
-      {/* 13. PARA QUEM É */}
+      {/* 4. ESTE DIAGNÓSTICO FAZ SENTIDO PARA SUA CLÍNICA SE: */}
       <ParaQuemSection />
 
-      {/* 14. PROVAS ADICIONAIS COMPACTAS */}
-      <ProvasAdicionaisSection onOpenVideo={handleOpenVideo} />
+      {/* 5. RESULTADOS REAIS DE QUEM JÁ APLICOU A ESTRATÉGIA */}
+      <ResultadosReaisSection onOpenVideo={handleOpenVideo} />
 
-      {/* 15. COMO FUNCIONA (3 ETAPAS) */}
-      <ComoFuncionaSection />
-
-      {/* 16. SUBSTITUIÇÃO COMPACTA DOS PLANOS */}
-      <CaminhosCompactosSection />
-
-      {/* 17. FAQ CURTO (5 Perguntas) */}
+      {/* 6. PERGUNTAS FREQUENTES */}
       <FaqCurtoSection />
 
-      {/* 18. CTA FINAL COM REUTILIZAÇÃO DO FORMULÁRIO */}
+      {/* FORMULÁRIO FINAL E FOOTER */}
       <CtaFinalFormSection setLeadName={setLeadName} utms={utms} />
-
-      {/* FOOTER */}
       <Footer />
 
-      {/* 19. CTA FIXO NO MOBILE (< 64px) */}
+      {/* CTA FIXO NO MOBILE */}
       <CtaFixoMobile />
 
-      {/* Modal de Depoimento em Vídeo */}
+      {/* Modal de Vídeo */}
       {activeVideoUrl && (
         <VideoModal videoUrl={activeVideoUrl} onClose={handleCloseVideo} />
       )}
@@ -277,7 +258,7 @@ function Index() {
   );
 }
 
-// ==================== COMPONENTES DETALHADOS ====================
+// ==================== COMPONENTES DAS 6 SEÇÕES ====================
 
 function Header() {
   const scrollToForm = () => {
@@ -291,8 +272,6 @@ function Header() {
   return (
     <header className="sticky top-0 left-0 w-full z-30 bg-[#050705]/95 border-b border-[#252A25]/60 py-3.5 backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 flex items-center justify-between">
-        
-        {/* Logo FA */}
         <div className="flex items-center gap-2">
           <span className="text-xl sm:text-2xl font-black tracking-tight text-[#F4F6F1]">
             FA
@@ -300,19 +279,18 @@ function Header() {
           <span className="h-2 w-2 rounded-full bg-[#8CFF00]" />
         </div>
 
-        {/* Botão à direita */}
         <button 
           onClick={scrollToForm}
           className="inline-flex h-10 items-center justify-center rounded-lg border border-[#8CFF00] px-4.5 text-xs font-extrabold uppercase tracking-wider text-[#8CFF00] hover:bg-[#8CFF00] hover:text-[#050705] transition-all duration-200 cursor-pointer"
         >
           Receber diagnóstico
         </button>
-
       </div>
     </header>
   );
 }
 
+// SEÇÃO 1: HERO
 interface HeroProps {
   setLeadName: (val: string) => void;
   utms: any;
@@ -327,38 +305,32 @@ function Hero({ setLeadName, utms }: HeroProps) {
   ];
 
   return (
-    <section id="topo" className="relative overflow-hidden bg-[#050705] pt-6 pb-12 lg:pt-10 lg:pb-16 min-h-[90vh] flex flex-col justify-center">
+    <section id="topo" className="relative overflow-hidden bg-[#050705] pt-6 pb-12 lg:pt-10 lg:pb-16 min-h-[90vh] flex flex-col justify-center border-b border-[#252A25]">
       <div className="relative z-20 w-full mx-auto max-w-7xl px-5 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           
-          {/* Coluna Esquerda: Copy Principal (54%) */}
+          {/* Esquerda: Copy Principal (54%) */}
           <div className="lg:col-span-7 flex flex-col text-left">
-            
-            {/* Eyebrow */}
             <div>
               <span className="inline-flex items-center rounded-md bg-[#0B0E0B] border border-[#252A25] px-3 py-1 text-[11px] font-black uppercase tracking-[0.2em] text-[#8CFF00]">
                 DIAGNÓSTICO ESTRATÉGICO FA
               </span>
             </div>
 
-            {/* Headline Principal (54-62px no Desktop, 38-44px no Mobile) */}
             <h1 className="mt-4 text-[38px] sm:text-[46px] lg:text-[56px] font-black leading-[1.08] tracking-tight text-[#FFFFFF]">
               Antes de investir mais em tráfego, descubra onde sua clínica está <span className="text-[#8CFF00]">perdendo dinheiro.</span>
             </h1>
 
-            {/* Subheadline (18-21px no Desktop, 17-18px no Mobile) */}
             <p className="mt-4 text-[17px] sm:text-[19px] lg:text-[20px] leading-relaxed text-[#F4F6F1]/90 font-medium max-w-2xl">
               Identificamos os gargalos que podem estar reduzindo seus agendamentos, sua conversão em procedimentos e o retorno do investimento em marketing.
             </p>
 
-            {/* Frase de Impacto Destacada Visualmente */}
             <div className="mt-5 p-4 rounded-xl bg-[#0B0E0B] border-l-4 border-[#8CFF00] max-w-xl">
               <p className="text-sm sm:text-base font-extrabold text-[#8CFF00] leading-snug">
                 "Você pode não precisar de mais leads. Pode precisar parar de perder os que já chegam."
               </p>
             </div>
 
-            {/* Três Benefícios */}
             <div className="mt-6 space-y-2.5 max-w-xl">
               <div className="flex items-center gap-3">
                 <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#8CFF00]/20">
@@ -388,7 +360,6 @@ function Hero({ setLeadName, utms }: HeroProps) {
               </div>
             </div>
 
-            {/* Identificação do Público & 4 Chips */}
             <div className="mt-6 pt-5 border-t border-[#252A25]/60 max-w-xl">
               <p className="text-xs sm:text-sm font-semibold text-[#667066]">
                 Para médicos, cirurgiões-dentistas e empresários de clínicas com operação validada e faturamento a partir de R$ 35 mil mensais.
@@ -405,7 +376,6 @@ function Hero({ setLeadName, utms }: HeroProps) {
               </div>
             </div>
 
-            {/* Prova em Texto Menor */}
             <div className="mt-5 pt-4 border-t border-[#252A25]/40 max-w-xl">
               <p className="text-xs font-bold text-[#F4F6F1]">
                 Cases reais com clínicas que ultrapassaram R$ 220 mil, R$ 318 mil, R$ 500 mil e R$ 550 mil em faturamento mensal.
@@ -417,7 +387,7 @@ function Hero({ setLeadName, utms }: HeroProps) {
 
           </div>
 
-          {/* Coluna Direita: Card Formulário Off-White / Branco (420-460px) */}
+          {/* Direita: Card Formulário Off-White */}
           <div id="hero-form-wrapper" className="lg:col-span-5 w-full max-w-[460px] mx-auto lg:mx-0 scroll-mt-16">
             <MultistepFormCard setLeadName={setLeadName} utms={utms} formId="hero_form" />
           </div>
@@ -428,7 +398,7 @@ function Hero({ setLeadName, utms }: HeroProps) {
   );
 }
 
-// 7. COMPONENTE DE FORMULÁRIO (CARD OFF-WHITE / BRANCO ALTO CONTRASTE)
+// FORMULÁRIO 2 ETAPAS REUTILIZADO
 interface MultistepFormCardProps {
   setLeadName: (val: string) => void;
   utms: any;
@@ -439,7 +409,6 @@ function MultistepFormCard({ setLeadName, utms, formId }: MultistepFormCardProps
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Campos do Formulário (Preservados rigorosamente)
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [instagram, setInstagram] = useState("");
@@ -500,7 +469,6 @@ function MultistepFormCard({ setLeadName, utms, formId }: MultistepFormCardProps
     setIsSubmitting(true);
     setLeadName(name);
 
-    // Score de qualificação mantido
     let score = 0;
     if (faturamento === "Entre R$ 35 mil e R$ 60 mil") score += 20;
     else if (faturamento === "Entre R$ 60 mil e R$ 100 mil") score += 40;
@@ -521,7 +489,6 @@ function MultistepFormCard({ setLeadName, utms, formId }: MultistepFormCardProps
     else if (score >= 35) leadType = "C";
     else leadType = "D";
 
-    // Payload Dot.Sales
     const payload = {
       timestamp: new Date().toLocaleString("pt-BR"),
       name: name,
@@ -568,7 +535,6 @@ function MultistepFormCard({ setLeadName, utms, formId }: MultistepFormCardProps
         body: JSON.stringify(payload),
       });
 
-      // Disparar Pixel somente após confirmação real
       if (typeof window !== "undefined") {
         const win = window as any;
         if (typeof win.fbq === "function") {
@@ -612,8 +578,6 @@ function MultistepFormCard({ setLeadName, utms, formId }: MultistepFormCardProps
 
   return (
     <div className="rounded-2xl border border-[#DDE2D9] bg-[#F4F6F1] p-6 sm:p-7 shadow-xl relative text-left text-[#050705]">
-      
-      {/* Título e Subtítulo */}
       <div className="mb-4">
         <div className="flex items-center justify-between mb-2">
           <span className="inline-flex items-center gap-1.5 rounded bg-[#050705] px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-[#8CFF00]">
@@ -632,7 +596,6 @@ function MultistepFormCard({ setLeadName, utms, formId }: MultistepFormCardProps
         </p>
       </div>
 
-      {/* Progresso */}
       <div className="mb-5">
         <div className="h-2 w-full bg-[#DDE2D9] rounded-full overflow-hidden">
           <div 
@@ -643,8 +606,6 @@ function MultistepFormCard({ setLeadName, utms, formId }: MultistepFormCardProps
       </div>
 
       <form onSubmit={onSubmit} className="space-y-3.5">
-        
-        {/* ETAPA 1 */}
         {step === 1 && (
           <div className="space-y-3.5 animate-fade-in">
             <div>
@@ -686,7 +647,6 @@ function MultistepFormCard({ setLeadName, utms, formId }: MultistepFormCardProps
           </div>
         )}
 
-        {/* ETAPA 2 */}
         {step === 2 && (
           <div className="space-y-3 animate-fade-in">
             <div>
@@ -806,7 +766,6 @@ function MultistepFormCard({ setLeadName, utms, formId }: MultistepFormCardProps
           </div>
         )}
 
-        {/* Risco Reverso & Segurança */}
         <div className="mt-4 pt-3 border-t border-[#DDE2D9] text-center space-y-1">
           <p className="text-xs font-bold text-[#050705]">
             Gratuito e sem compromisso. Você não precisa contratar nenhum serviço depois da análise.
@@ -821,56 +780,57 @@ function MultistepFormCard({ setLeadName, utms, formId }: MultistepFormCardProps
   );
 }
 
-// 9. FAIXA DE RESULTADOS (Logo após o Hero)
-function FaixaResultadosSection() {
+// SEÇÃO 2: PASSO A PASSO
+function PassoAPassoSection() {
+  const etapas = [
+    {
+      num: "01",
+      title: "1. Você preenche",
+      desc: "Compartilha rapidamente informações sobre o momento da clínica."
+    },
+    {
+      num: "02",
+      title: "2. A FA analisa",
+      desc: "Nossa equipe avalia os dados e identifica os principais pontos de atenção."
+    },
+    {
+      num: "03",
+      title: "3. Você recebe a análise",
+      desc: "Em uma conversa estratégica, mostramos os gargalos e o próximo passo recomendado."
+    }
+  ];
+
   return (
-    <section className="bg-[#F4F6F1] border-y border-[#DDE2D9] py-8 text-[#050705]">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center text-center items-center font-bold">
-          
-          <div className="flex flex-col">
-            <span className="text-3xl lg:text-4xl font-black text-[#050705] tracking-tight">
-              R$ 550 mil+
-            </span>
-            <span className="mt-1 text-[11px] font-bold text-[#667066]">
-              Faturamento mensal em case acompanhado pela FA
-            </span>
-          </div>
+    <section className="bg-[#F4F6F1] border-b border-[#DDE2D9] py-14 lg:py-18 text-[#050705]">
+      <div className="mx-auto max-w-5xl px-5 sm:px-6 text-center">
+        
+        <span className="inline-flex items-center rounded-md bg-[#FFFFFF] border border-[#DDE2D9] px-3.5 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-[#050705]">
+          PASSO A PASSO
+        </span>
+        <h2 className="mt-3.5 text-2xl sm:text-3xl font-black tracking-tight text-[#050705]">
+          Como funciona a solicitação do diagnóstico
+        </h2>
 
-          <div className="flex flex-col">
-            <span className="text-3xl lg:text-4xl font-black text-[#050705] tracking-tight">
-              R$ 500 mil+
-            </span>
-            <span className="mt-1 text-[11px] font-bold text-[#667066]">
-              Faturamento mensal em case acompanhado pela FA
-            </span>
-          </div>
-
-          <div className="flex flex-col">
-            <span className="text-3xl lg:text-4xl font-black text-[#050705] tracking-tight">
-              R$ 318 mil+
-            </span>
-            <span className="mt-1 text-[11px] font-bold text-[#667066]">
-              Faturamento mensal em case acompanhado pela FA
-            </span>
-          </div>
-
-          <div className="flex flex-col">
-            <span className="text-3xl lg:text-4xl font-black text-[#050705] tracking-tight">
-              R$ 220 mil+
-            </span>
-            <span className="mt-1 text-[11px] font-bold text-[#667066]">
-              Faturamento mensal em case acompanhado pela FA
-            </span>
-          </div>
-
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 text-left">
+          {etapas.map((et, idx) => (
+            <div key={idx} className="rounded-xl border border-[#DDE2D9] bg-[#FFFFFF] p-6 shadow-sm">
+              <span className="block text-2xl font-black text-[#5FAE00] mb-2">{et.num}</span>
+              <h3 className="text-base font-extrabold text-[#050705]">{et.title}</h3>
+              <p className="mt-1.5 text-xs sm:text-sm text-[#667066] leading-relaxed font-medium">{et.desc}</p>
+            </div>
+          ))}
         </div>
+
+        <p className="mt-6 text-xs text-[#667066] font-bold">
+          * Sem obrigação de contratação.
+        </p>
+
       </div>
     </section>
   );
 }
 
-// 10. CASE PRINCIPAL
+// SEÇÃO 3: PROVA, NÃO APENAS PROMESSA
 interface CasePrincipalSectionProps {
   onOpenVideo: (url: string) => void;
 }
@@ -901,7 +861,6 @@ function CasePrincipalSection({ onOpenVideo }: CasePrincipalSectionProps) {
 
         <div className="rounded-2xl border border-[#252A25] bg-[#0B0E0B] p-6 sm:p-9 flex flex-col md:flex-row items-center gap-8 shadow-xl text-left">
           
-          {/* Vídeo */}
           <div className="w-full md:w-[240px] shrink-0">
             <div 
               onClick={() => onOpenVideo(caseDestaque.videoUrl)}
@@ -921,12 +880,10 @@ function CasePrincipalSection({ onOpenVideo }: CasePrincipalSectionProps) {
             </div>
           </div>
 
-          {/* Informações */}
           <div className="flex-1 flex flex-col">
             <div className="text-xs font-black uppercase tracking-widest text-[#8CFF00]">{caseDestaque.specialty}</div>
             <h3 className="mt-1 text-xl font-black text-[#FFFFFF]">Case {caseDestaque.name} — {caseDestaque.city}</h3>
 
-            {/* Elemento mais visível */}
             <div className="mt-4 p-4 rounded-xl bg-[#050705] border border-[#8CFF00]/40">
               <span className="block text-[10px] font-extrabold uppercase tracking-wider text-[#8CFF00]">Resultado Principal</span>
               <span className="block mt-0.5 text-2xl sm:text-3xl font-black text-[#FFFFFF]">{caseDestaque.stats.revenue}</span>
@@ -965,161 +922,7 @@ function CasePrincipalSection({ onOpenVideo }: CasePrincipalSectionProps) {
   );
 }
 
-// 11. O QUE O VISITANTE RECEBE
-function OQueVoceRecebeSection() {
-  const scrollToForm = () => {
-    trackCustomEvent("WhatYouGetCTAClick");
-    const element = document.getElementById("hero-form-wrapper");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  return (
-    <section className="bg-[#F4F6F1] border-b border-[#DDE2D9] py-14 lg:py-20 text-[#050705]">
-      <div className="mx-auto max-w-6xl px-5 sm:px-6">
-        
-        <div className="text-center mb-12 max-w-3xl mx-auto">
-          <span className="inline-flex items-center rounded-md bg-[#FFFFFF] border border-[#DDE2D9] px-3.5 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-[#050705]">
-            O QUE VOCÊ VAI DESCOBRIR
-          </span>
-          <h2 className="mt-3.5 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#050705]">
-            Você não receberá uma apresentação genérica sobre marketing.
-          </h2>
-          <p className="mt-2 text-sm sm:text-base text-[#667066] font-medium leading-relaxed">
-            A análise mostra onde sua operação pode estar perdendo força e o que deve ser priorizado primeiro.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-          
-          <div className="rounded-xl border border-[#DDE2D9] bg-[#FFFFFF] p-6 shadow-sm">
-            <div className="h-10 w-10 rounded-lg bg-[#050705] flex items-center justify-center text-[#8CFF00] font-black mb-4">
-              <FileSearch className="h-5 w-5" />
-            </div>
-            <h3 className="text-base sm:text-lg font-black text-[#050705]">Mapa dos gargalos</h3>
-            <p className="mt-2 text-xs sm:text-sm text-[#667066] leading-relaxed font-medium">
-              Identificação dos pontos que podem estar limitando posicionamento, demanda, agendamentos ou conversão.
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-[#DDE2D9] bg-[#FFFFFF] p-6 shadow-sm">
-            <div className="h-10 w-10 rounded-lg bg-[#050705] flex items-center justify-center text-[#8CFF00] font-black mb-4">
-              <Target className="h-5 w-5" />
-            </div>
-            <h3 className="text-base sm:text-lg font-black text-[#050705]">Ordem de prioridades</h3>
-            <p className="mt-2 text-xs sm:text-sm text-[#667066] leading-relaxed font-medium">
-              Clareza sobre o que corrigir primeiro antes de aumentar investimento, equipe ou volume de leads.
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-[#DDE2D9] bg-[#FFFFFF] p-6 shadow-sm">
-            <div className="h-10 w-10 rounded-lg bg-[#050705] flex items-center justify-center text-[#8CFF00] font-black mb-4">
-              <TrendingUp className="h-5 w-5" />
-            </div>
-            <h3 className="text-base sm:text-lg font-black text-[#050705]">Próximo passo recomendado</h3>
-            <p className="mt-2 text-xs sm:text-sm text-[#667066] leading-relaxed font-medium">
-              Uma indicação mais objetiva sobre qual estrutura faz sentido para o momento atual da clínica.
-            </p>
-          </div>
-
-        </div>
-
-        <div className="mt-10 text-center">
-          <button
-            onClick={scrollToForm}
-            className="inline-flex h-[52px] w-full sm:w-auto items-center justify-center gap-2 rounded-lg bg-[#050705] px-8 text-xs sm:text-sm font-black uppercase tracking-wider text-[#FFFFFF] hover:bg-[#8CFF00] hover:text-[#050705] transition-all cursor-pointer"
-          >
-            QUERO RECEBER ESSA ANÁLISE
-            <ArrowRight className="h-4.5 w-4.5" />
-          </button>
-        </div>
-
-      </div>
-    </section>
-  );
-}
-
-// 12. SEÇÃO AGRESSIVA SOBRE PERDA DE DINHEIRO
-function PerdaDinheiroSection() {
-  const scrollToForm = () => {
-    trackCustomEvent("MoneyLossCTAClick");
-    const element = document.getElementById("hero-form-wrapper");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  return (
-    <section className="bg-[#050705] border-b border-[#252A25] py-14 lg:py-20 text-[#F4F6F1]">
-      <div className="mx-auto max-w-5xl px-5 sm:px-6 text-center">
-        
-        <span className="inline-flex items-center rounded-md bg-[#0B0E0B] border border-[#252A25] px-3.5 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-[#8CFF00]">
-          O DINHEIRO PODE ESTAR ESCAPANDO DEPOIS DO CLIQUE
-        </span>
-        <h2 className="mt-3.5 text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#FFFFFF] max-w-3xl mx-auto">
-          Sua clínica pode estar pagando para gerar oportunidades que nunca chegam ao procedimento.
-        </h2>
-        <p className="mt-3 text-sm sm:text-base text-[#F4F6F1]/80 font-medium max-w-2xl mx-auto leading-relaxed">
-          Quando posicionamento, tráfego, atendimento e follow-up trabalham separados, o lead chega, esfria e agenda em outra clínica.
-        </p>
-
-        {/* 4 Pontos Curtos */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 max-w-5xl mx-auto text-left">
-          
-          <div className="rounded-xl border border-[#252A25] bg-[#0B0E0B] p-5">
-            <span className="block text-lg font-black text-[#8CFF00] mb-2">01</span>
-            <p className="text-xs sm:text-sm font-bold text-[#F4F6F1] leading-snug">
-              O paciente não entende o diferencial.
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-[#252A25] bg-[#0B0E0B] p-5">
-            <span className="block text-lg font-black text-[#8CFF00] mb-2">02</span>
-            <p className="text-xs sm:text-sm font-bold text-[#F4F6F1] leading-snug">
-              O anúncio atrai contatos fora do perfil.
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-[#252A25] bg-[#0B0E0B] p-5">
-            <span className="block text-lg font-black text-[#8CFF00] mb-2">03</span>
-            <p className="text-xs sm:text-sm font-bold text-[#F4F6F1] leading-snug">
-              O atendimento demora para responder.
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-[#252A25] bg-[#0B0E0B] p-5">
-            <span className="block text-lg font-black text-[#8CFF00] mb-2">04</span>
-            <p className="text-xs sm:text-sm font-bold text-[#F4F6F1] leading-snug">
-              O lead não recebe acompanhamento.
-            </p>
-          </div>
-
-        </div>
-
-        {/* Caixa de Destaque Verde */}
-        <div className="mt-8 p-4 rounded-xl bg-[#0B0E0B] border border-[#8CFF00]/40 max-w-xl mx-auto">
-          <p className="text-xs sm:text-sm font-black text-[#8CFF00] leading-snug">
-            Aumentar a verba antes de corrigir o gargalo pode apenas aumentar o desperdício.
-          </p>
-        </div>
-
-        <div className="mt-8">
-          <button
-            onClick={scrollToForm}
-            className="inline-flex h-[52px] w-full sm:w-auto items-center justify-center gap-2 rounded-lg bg-[#8CFF00] px-8 text-xs sm:text-sm font-black uppercase tracking-wider text-[#050705] hover:bg-[#68BF00] transition-all cursor-pointer shadow-md"
-          >
-            DESCOBRIR ONDE ESTOU PERDENDO OPORTUNIDADES
-            <ArrowRight className="h-4.5 w-4.5" />
-          </button>
-        </div>
-
-      </div>
-    </section>
-  );
-}
-
-// 13. PARA QUEM É
+// SEÇÃO 4: ESTE DIAGNÓSTICO FAZ SENTIDO PARA SUA CLÍNICA SE:
 function ParaQuemSection() {
   const items = [
     "fatura a partir de R$ 35 mil por mês;",
@@ -1162,12 +965,12 @@ function ParaQuemSection() {
   );
 }
 
-// 14. PROVAS ADICIONAIS COMPACTAS (Máximo 3 Depoimentos)
-interface ProvasAdicionaisSectionProps {
+// SEÇÃO 5: RESULTADOS REAIS DE QUEM JÁ APLICOU A ESTRATÉGIA
+interface ResultadosReaisSectionProps {
   onOpenVideo: (url: string) => void;
 }
 
-function ProvasAdicionaisSection({ onOpenVideo }: ProvasAdicionaisSectionProps) {
+function ResultadosReaisSection({ onOpenVideo }: ResultadosReaisSectionProps) {
   const scrollToForm = () => {
     trackCustomEvent("AdditionalProofCTAClick");
     const element = document.getElementById("hero-form-wrapper");
@@ -1253,92 +1056,7 @@ function ProvasAdicionaisSection({ onOpenVideo }: ProvasAdicionaisSectionProps) 
   );
 }
 
-// 15. COMO FUNCIONA (3 ETAPAS SOMENTE)
-function ComoFuncionaSection() {
-  const etapas = [
-    {
-      num: "01",
-      title: "1. Você preenche",
-      desc: "Compartilha rapidamente informações sobre o momento da clínica."
-    },
-    {
-      num: "02",
-      title: "2. A FA analisa",
-      desc: "Nossa equipe avalia os dados e identifica os principais pontos de atenção."
-    },
-    {
-      num: "03",
-      title: "3. Você recebe a análise",
-      desc: "Em uma conversa estratégica, mostramos os gargalos e o próximo passo recomendado."
-    }
-  ];
-
-  return (
-    <section className="bg-[#F4F6F1] border-b border-[#DDE2D9] py-14 lg:py-18 text-[#050705]">
-      <div className="mx-auto max-w-5xl px-5 sm:px-6 text-center">
-        
-        <span className="inline-flex items-center rounded-md bg-[#FFFFFF] border border-[#DDE2D9] px-3.5 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-[#050705]">
-          PASSO A PASSO
-        </span>
-        <h2 className="mt-3.5 text-2xl sm:text-3xl font-black tracking-tight text-[#050705]">
-          Como funciona a solicitação do diagnóstico
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 text-left">
-          {etapas.map((et, idx) => (
-            <div key={idx} className="rounded-xl border border-[#DDE2D9] bg-[#FFFFFF] p-6 shadow-sm">
-              <span className="block text-2xl font-black text-[#5FAE00] mb-2">{et.num}</span>
-              <h3 className="text-base font-extrabold text-[#050705]">{et.title}</h3>
-              <p className="mt-1.5 text-xs sm:text-sm text-[#667066] leading-relaxed font-medium">{et.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        <p className="mt-6 text-xs text-[#667066] font-bold">
-          * Sem obrigação de contratação.
-        </p>
-
-      </div>
-    </section>
-  );
-}
-
-// 16. SUBSTITUIÇÃO COMPACTA DA SEÇÃO DE PLANOS
-function CaminhosCompactosSection() {
-  return (
-    <section className="bg-[#050705] border-b border-[#252A25] py-12 lg:py-16 text-[#F4F6F1]">
-      <div className="mx-auto max-w-4xl px-5 sm:px-6 text-center">
-        
-        <h2 className="text-xl sm:text-2xl font-black tracking-tight text-[#FFFFFF]">
-          O diagnóstico mostra se sua clínica precisa de performance ou de uma estrutura mais completa.
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 text-left">
-          <div className="rounded-xl border border-[#252A25] bg-[#0B0E0B] p-5">
-            <span className="text-xs font-black uppercase tracking-wider text-[#8CFF00] block">Performance</span>
-            <p className="mt-1.5 text-xs sm:text-sm text-[#F4F6F1]/90 font-medium">
-              Conteúdo, posicionamento e tráfego.
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-[#252A25] bg-[#0B0E0B] p-5">
-            <span className="text-xs font-black uppercase tracking-wider text-[#8CFF00] block">Crescimento integrado</span>
-            <p className="mt-1.5 text-xs sm:text-sm text-[#F4F6F1]/90 font-medium">
-              Demanda, atendimento, comercial e dados.
-            </p>
-          </div>
-        </div>
-
-        <p className="mt-4 text-xs text-[#667066] font-semibold">
-          Você não precisa escolher agora.
-        </p>
-
-      </div>
-    </section>
-  );
-}
-
-// 17. FAQ CURTO (5 PERGUNTAS)
+// SEÇÃO 6: PERGUNTAS FREQUENTES
 function FaqCurtoSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -1413,7 +1131,7 @@ function FaqCurtoSection() {
   );
 }
 
-// 18. CTA FINAL COM REUTILIZAÇÃO DO FORMULÁRIO
+// FORMULÁRIO FINAL E FOOTER
 interface CtaFinalFormSectionProps {
   setLeadName: (val: string) => void;
   utms: any;
@@ -1436,7 +1154,6 @@ function CtaFinalFormSection({ setLeadName, utms }: CtaFinalFormSectionProps) {
           </p>
         </div>
 
-        {/* Card do Formulário Final */}
         <MultistepFormCard setLeadName={setLeadName} utms={utms} formId="final_form" />
 
         <p className="mt-4 text-[11px] font-semibold text-[#667066]">
@@ -1448,7 +1165,6 @@ function CtaFinalFormSection({ setLeadName, utms }: CtaFinalFormSectionProps) {
   );
 }
 
-// FOOTER (Simples)
 function Footer() {
   return (
     <footer className="border-t border-[#252A25] bg-[#050705] text-[#667066]">
@@ -1488,7 +1204,6 @@ function Footer() {
   );
 }
 
-// 19. CTA FIXO NO MOBILE (< 64px)
 function CtaFixoMobile() {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -1539,7 +1254,6 @@ function CtaFixoMobile() {
   );
 }
 
-// Modal de Depoimento em Vídeo
 interface VideoModalProps {
   videoUrl: string;
   onClose: () => void;
