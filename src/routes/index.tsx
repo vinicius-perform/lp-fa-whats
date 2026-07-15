@@ -292,11 +292,7 @@ function Hero({ setLeadName, utms }: HeroProps) {
               Identificamos os gargalos que podem estar reduzindo seus agendamentos, sua conversão em procedimentos e o retorno do investimento em marketing.
             </p>
 
-            <div className="mt-5 p-4 rounded-xl bg-[#0B0E0B] border-l-4 border-[#8CFF00] max-w-xl">
-              <p className="text-sm sm:text-base font-extrabold text-[#8CFF00] leading-snug">
-                "Você pode não precisar de mais leads. Pode precisar parar de perder os que já chegam."
-              </p>
-            </div>
+
 
             <div className="mt-6 space-y-2.5 max-w-xl">
               <div className="flex items-center gap-3">
