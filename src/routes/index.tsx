@@ -221,9 +221,6 @@ function Index() {
         <span>DIAGNÓSTICO GRATUITO PARA CLÍNICAS COM FATURAMENTO A PARTIR DE R$ 35 MIL/MÊS</span>
       </div>
 
-      {/* Header Minimalista */}
-      <Header />
-
       {/* 1. HERO COM FORMULÁRIO */}
       <Hero setLeadName={setLeadName} utms={utms} />
 
@@ -259,36 +256,6 @@ function Index() {
 }
 
 // ==================== COMPONENTES DAS 6 SEÇÕES ====================
-
-function Header() {
-  const scrollToForm = () => {
-    trackCustomEvent("HeaderCTAClick");
-    const element = document.getElementById("hero-form-wrapper");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  return (
-    <header className="sticky top-0 left-0 w-full z-30 bg-[#050705]/95 border-b border-[#252A25]/60 py-3.5 backdrop-blur-md">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="text-xl sm:text-2xl font-black tracking-tight text-[#F4F6F1]">
-            FA
-          </span>
-          <span className="h-2 w-2 rounded-full bg-[#8CFF00]" />
-        </div>
-
-        <button 
-          onClick={scrollToForm}
-          className="inline-flex h-10 items-center justify-center rounded-lg border border-[#8CFF00] px-4.5 text-xs font-extrabold uppercase tracking-wider text-[#8CFF00] hover:bg-[#8CFF00] hover:text-[#050705] transition-all duration-200 cursor-pointer"
-        >
-          Receber diagnóstico
-        </button>
-      </div>
-    </header>
-  );
-}
 
 // SEÇÃO 1: HERO
 interface HeroProps {
