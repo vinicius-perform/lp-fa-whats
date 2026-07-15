@@ -173,15 +173,31 @@ function Index() {
     }
 
     const params = new URLSearchParams(window.location.search);
-    const getParam = (name: string) => params.get(name) || "";
+    const getParam = (...names: string[]) => {
+      for (const name of names) {
+        const val = params.get(name);
+        if (val) return val;
+      }
+      return "";
+    };
+
+    const utmCampaign = getParam("utm_campaign", "campaign_name", "campaign_id", "campaign");
+    const utmMedium = getParam("utm_medium", "adset_name", "adset_id", "adset");
+    const utmContent = getParam("utm_content", "ad_name", "ad_id", "ad");
+    const utmSource = getParam("utm_source", "source", "placement");
+
     setUtms({
-      utm_source: getParam("utm_source"),
-      utm_medium: getParam("utm_medium"),
-      utm_campaign: getParam("utm_campaign"),
-      utm_content: getParam("utm_content"),
-      utm_term: getParam("utm_term"),
+      utm_source: utmSource,
+      utm_medium: utmMedium,
+      utm_campaign: utmCampaign,
+      utm_content: utmContent,
+      utm_term: getParam("utm_term", "keyword"),
       fbclid: getParam("fbclid"),
-      gclid: getParam("gclid")
+      gclid: getParam("gclid"),
+      meta_campanha: utmCampaign,
+      meta_conjunto: utmMedium,
+      meta_anuncio: utmContent,
+      meta_posicionamento: utmSource
     });
 
     let scroll50Fired = false;
@@ -411,6 +427,21 @@ function MultistepFormCard({ setLeadName, utms, formId }: MultistepFormCardProps
       prazo_inicio: prazo,
 
       form_used: formId,
+      
+      // Meta Ads & UTMs principais
+      meta_campanha: utms.meta_campanha || utms.utm_campaign,
+      meta_conjunto: utms.meta_conjunto || utms.utm_medium,
+      meta_anuncio: utms.meta_anuncio || utms.utm_content,
+      meta_posicionamento: utms.meta_posicionamento || utms.utm_source,
+
+      // Aliases em português para colunas diretas da planilha
+      campanha: utms.meta_campanha || utms.utm_campaign,
+      conjunto_anuncios: utms.meta_conjunto || utms.utm_medium,
+      conjunto: utms.meta_conjunto || utms.utm_medium,
+      anuncio: utms.meta_anuncio || utms.utm_content,
+      posicionamento: utms.meta_posicionamento || utms.utm_source,
+
+      // Mapeamento padrão UTM
       utm_source: utms.utm_source,
       utm_medium: utms.utm_medium,
       utm_campaign: utms.utm_campaign,
