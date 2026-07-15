@@ -264,13 +264,6 @@ interface HeroProps {
 }
 
 function Hero({ setLeadName, utms }: HeroProps) {
-  const chips = [
-    "Harmonização facial",
-    "Harmonização corporal",
-    "Odontologia estética",
-    "Estética avançada"
-  ];
-
   return (
     <section id="topo" className="relative overflow-hidden bg-[#050705] pt-6 pb-12 lg:pt-10 lg:pb-16 min-h-[90vh] flex flex-col justify-center border-b border-[#252A25]">
       <div className="relative z-20 w-full mx-auto max-w-7xl px-5 sm:px-6">
@@ -291,63 +284,6 @@ function Hero({ setLeadName, utms }: HeroProps) {
             <p className="mt-4 text-[17px] sm:text-[19px] lg:text-[20px] leading-relaxed text-[#F4F6F1]/90 font-medium max-w-2xl">
               Identificamos os gargalos que podem estar reduzindo seus agendamentos, sua conversão em procedimentos e o retorno do investimento em marketing.
             </p>
-
-
-
-            <div className="mt-6 space-y-2.5 max-w-xl">
-              <div className="flex items-center gap-3">
-                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#8CFF00]/20">
-                  <Check className="h-3.5 w-3.5 text-[#8CFF00]" />
-                </div>
-                <span className="text-sm sm:text-base font-semibold text-[#F4F6F1]">
-                  Descubra onde as oportunidades deixam de avançar.
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#8CFF00]/20">
-                  <Check className="h-3.5 w-3.5 text-[#8CFF00]" />
-                </div>
-                <span className="text-sm sm:text-base font-semibold text-[#F4F6F1]">
-                  Saiba o que deve ser corrigido primeiro.
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#8CFF00]/20">
-                  <Check className="h-3.5 w-3.5 text-[#8CFF00]" />
-                </div>
-                <span className="text-sm sm:text-base font-semibold text-[#F4F6F1]">
-                  Entenda qual estrutura faz sentido para sua clínica.
-                </span>
-              </div>
-            </div>
-
-            <div className="mt-6 pt-5 border-t border-[#252A25]/60 max-w-xl">
-              <p className="text-xs sm:text-sm font-semibold text-[#667066]">
-                Para médicos, cirurgiões-dentistas e empresários de clínicas com operação validada e faturamento a partir de R$ 35 mil mensais.
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {chips.map((chip, idx) => (
-                  <span 
-                    key={idx} 
-                    className="rounded-md border border-[#252A25] bg-[#0B0E0B] px-2.5 py-1 text-xs font-medium text-[#F4F6F1]"
-                  >
-                    {chip}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-5 pt-4 border-t border-[#252A25]/40 max-w-xl">
-              <p className="text-xs font-bold text-[#F4F6F1]">
-                Cases reais com clínicas que ultrapassaram R$ 220 mil, R$ 318 mil, R$ 500 mil e R$ 550 mil em faturamento mensal.
-              </p>
-              <p className="mt-1 text-[11px] text-[#667066]">
-                Resultados específicos de cada operação. Não representam garantia de desempenho.
-              </p>
-            </div>
-
           </div>
 
           {/* Direita: Card Formulário Off-White */}
