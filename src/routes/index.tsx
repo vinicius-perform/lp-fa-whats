@@ -215,9 +215,9 @@ function Index() {
   return (
     <div className="min-h-screen bg-[#050705] text-[#F4F6F1] font-sans selection:bg-[#8CFF00] selection:text-[#050705]">
       
-      {/* Barra de Qualificação Superior */}
-      <div className="bg-[#0B0E0B] border-b border-[#252A25] py-2.5 px-4 flex items-center justify-center gap-2 text-xs sm:text-sm font-bold text-[#F4F6F1] uppercase tracking-wider shrink-0 text-center">
-        <span className="h-2 w-2 rounded-full bg-[#8CFF00] animate-pulse" />
+      {/* Barra de Qualificação Superior Vermelha Destacada */}
+      <div className="bg-[#E10614] border-b border-red-800 py-3 px-4 flex items-center justify-center gap-2.5 text-xs sm:text-sm font-black text-[#FFFFFF] uppercase tracking-widest shrink-0 text-center shadow-md">
+        <span className="h-2.5 w-2.5 rounded-full bg-[#FFFFFF] animate-pulse" />
         <span>DIAGNÓSTICO GRATUITO PARA CLÍNICAS COM FATURAMENTO A PARTIR DE R$ 35 MIL/MÊS</span>
       </div>
 
